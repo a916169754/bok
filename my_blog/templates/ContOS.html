@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for title in titles %}
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{title}}</h3>
+	</div>
+<div class="panel-body row clearfix ">
+	{% if error %}
+        <h2 class="post-title">没有相关文章题目</h2>
+    	{% else %}
+		{% for post in post_list %}
+		{% ifequal post.tag title %}
+		    <div class="post-header navbar-left col-md-6 column">
+		        <h4 class=""><a href="{% url "detail" id=post.id %}">{{ post.title }}</a></h4>
+		    </div>
+
+		<div class=" col-md-6 column "> 
+<ul class="navbar-right">
+			<li><span class="glyphicon glyphicon-time ">
+			{{ post.date_time |date:"Y/m/d"}}
+			</span></li>
+			<li><span class="glyphicon glyphicon-book">
+		        {{ post.category }}
+			</span></li>
+</ul>
+                </div>
+{% endifequal %}
+    {% endfor %}
+    {% endif %}
+
+</div>
+</div>
+ {% endfor %}
+{% endblock %}

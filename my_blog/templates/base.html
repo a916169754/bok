@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="renderer" content="webkit"> <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+	<!--[if lte IE 9]>
+	    <script src="static/bootstrap/js/respond.min.js"></script>
+	    <script src="static/bootstrap/js/html5.js"></script>
+	<![endif]-->	
+	
+    <title>李金林的博客</title>
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://picturebag.qiniudn.com/blog.css">
+    <link rel="stylesheet" href="http://picturebag.qiniudn.com/monokai.css">
+    <script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.js"></script>
+    <script src="/static/bootstrap//js/bootstrap.min.js"></script>
+
+<style>
+</style>
+</head>
+<body>
+
+<div class=" page-header text-center" style="background-color: #66B3FF;">
+    <h1>
+	美丽之物
+</br>
+        <small>真美啊！你说的景色，我永不会忘。</small>
+    </h1>
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+	<div class="container-fluid row clearfix"> 
+	<div class="navbar-header col-md-3 column ">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#example-navbar-collapse">
+			<span class="sr-only">切换导航</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand navbar-right" href="{% url 'home' %}">李金林的博客&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+	</div>
+	<div class="collapse navbar-collapse col-md-9 column" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="#">此博客开发流程</a></li>
+			<li><a href="#">C++学习笔记</a></li>
+			<li><a href="{% url "biji" cry='Python' %}">Python学习笔记</a></li>
+			<li><a href="#">Android学习笔记</a></li>
+			<li><a href="{% url "biji" cry='CentOS' %}">ContOS学习笔记</a></li>
+			<li><a href="#">Django学习笔记</a></li>
+			<li><a href="{% url "detail" id=0 %}">About Me</a></li>
+			<li><a href="#">RSS</a></li>
+
+		</ul>
+		
+	</div>
+	</div>
+</nav>
+</div>
+
+<div class="container">
+	<div class="row clearfix">
+
+		<div class="col-md-9 column">
+           		{% block content %}
+            		{% endblock %}
+           		 <div class="footer">
+                	 <div class="text-center">
+                    		<ul class="list-inline">
+                        	<li><a href="http://andrewliu.tk/about/">About Me</a></li>
+                        	<li><a href="http://twitter.com/yuilibrary/">Twitter</a></li>
+                        	<li><a href="http://github.com/yahoo/pure/">GitHub</a></li>
+                    		</ul>
+               		 </div>
+           		 </div>
+		</div>
+		<div class="col-md-3 column">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">最新文章</h3>
+				</div>
+			<div id="zuixin" class="carousel slide">
+			<!-- 轮播（Carousel）项目 -->
+			<div class="carousel-inner">
+
+				<div class="item active">
+					<img src="/static/1.jpg" alt="First slide">
+					<div class="carousel-caption"><h3> <a class="text-danger" href="{% url "detail" id=top1.id %}">{{top1.title}}</a></h3></div>
+				</div>
+				<div class="item">
+					<img src="/static/2.jpg" alt="null">
+					<div class="carousel-caption"><h3> <a class="text-danger" href="{% url "detail" id=top2.id %}">{{top2.title}}</a></h3></div>
+				</div>
+				<div class="item">
+					<img src="/static/3.jpg" alt="Third slide">
+					<div class="carousel-caption"><h3> <a class="text-danger" href="{% url "detail" id=top3.id %}">{{top3.title}}</a></h3></div>
+				</div>
+		
+			</div>
+			<!-- 轮播（Carousel）导航 -->
+			<a class="carousel-control left" href="#zuixin" 
+			   data-slide="prev">&lsaquo;</a>
+			<a class="carousel-control right" href="#zuixin" 
+			   data-slide="next">&rsaquo;</a>
+			</div> 
+			</div>
+
+			<div class="panel panel-success">
+			<div class="panel-heading">归档</div>
+			<ul class="list-group">
+				<li class="list-group-item"><a href="{% url 'archives' %}">2016/12</a></li>
+				<li class="list-group-item">2017/1</li>
+
+			</ul>
+			</div>
+			
+			<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+				联系我
+				</h3>
+			</div>
+			<div class="panel-body">
+				<img class=" img-responsive" src="/static/4.jpg" alt="Third slide">
+			</div>
+			</div>
+
+			</div>
+		
+	</div>
+</div>
+
+</body>
+</html>

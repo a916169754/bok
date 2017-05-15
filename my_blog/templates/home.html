@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load custom_markdown %}
+{% block content %}
+<div id="myCarousel" class="carousel slide">
+	<!-- 轮播（Carousel）指标 -->
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>   
+	<!-- 轮播（Carousel）项目 -->
+	<div class="carousel-inner height=100% width=100%">
+		<div class="item active height=100%">
+			<img style="width:100%" src="/static/back.jpg" alt="First slide" >
+			<div class="carousel-caption">标题 1</div>
+		</div>
+		<div class="item height=10px">
+			<img style="width:100%"  src="/static/back.jpg" alt="Second slide" >
+			<div class="carousel-caption">标题 2</div>
+		</div>
+		<div class="item height=100%">
+			<img style="width:100%" src="/static/back.jpg" alt="Third slide">
+			<div class="carousel-caption">标题 3</div>
+		</div>
+	</div>
+	<!-- 轮播（Carousel）导航 -->
+	<a class="carousel-control left" href="#myCarousel" 
+	   data-slide="prev">&lsaquo;</a>
+	<a class="carousel-control right" href="#myCarousel" 
+	   data-slide="next">&rsaquo;</a>
+</div> 
+<div class="posts table ">
+    {% for post in post_list %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4 class="panel-title">
+			 <h4 ><a class="text-primary" href="{% url "detail" id=post.id %}">{{ post.title }}</a></h4>		
+		</h4>
+	</div>
+	<div class="panel-body ">
+		<div class="row clearfix">
+		<div class="col-md-3 column">
+			Time:  <a class="post-author" href="#">{{ post.date_time |date:"Y M d"}}</a> </br>
+			Tag:   <a class="post-category post-category-js" >{{ post.category|title }}</a>
+		</div>
+		<div class="col-md-7 column post-description">
+			<p>
+             {{ post.introduce }}
+            </p></br>
+		<a class="pure-button" href="{% url "detail" id=post.id %}">Read More >>> </a>
+		</div>
+		<div class="col-md-2 column">
+		<img class=" img-responsive" src="/static/5.jpg" alt="Third slide">
+		</div>
+	</div>
+	</div>
+</div>
+{% endfor %}
+
+    {% if post_list.object_list and post_list.paginator.num_pages > 1 %}
+      <div>
+      <ul class="pager">
+      {% if post_list.has_previous %}
+        <li><a href="?page={{ post_list.previous_page_number }}">上一页</a></li>
+      {% endif %}
+
+      {% if post_list.has_next %}
+        <li><a href="?page={{ post_list.next_page_number }}">下一页</a></li>
+      {% endif %}
+      </ul>
+      </div>
+    {% endif %}
+</div><!-- /.blog-post -->
+{% endblock %}
